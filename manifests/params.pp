@@ -83,7 +83,7 @@ class elasticsearch::params {
 
   $heap_size = '1g'
 
-  $port = '9200'
+  $port = '9200:9400'
   $protocol = 'tcp'
 
   # General Settings
