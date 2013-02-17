@@ -16,7 +16,7 @@
     "manifests/spec.pp": "17dd5a76668ea44ec643c897a26b652d",
     "spec/classes/foo_spec.rb": "bb425fa686f7ef34d3e7694c8ad5378b",
     "spec/spec_helper.rb": "7885bb14f7edb8f34e2ab0299b097841",
-    "templates/default.elasticsearch": "63cb33b55c927c01f1ae165c224a87cb",
+    "templates/default.elasticsearch": "acdc1cdd16540449eefc605ebd61ba50",
     "templates/spec.erb": "95554a191230174b3ba5942f8d8d5b1e"
   },
   "dependencies": [
