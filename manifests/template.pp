@@ -38,19 +38,11 @@
 #
 # * Richard Pijnenburg <mailto:richard@ispavailability.com>
 #
-define elasticsearch::template(
-  $file    = undef,
-  $replace = false,
-  $delete  = false,
-  $host    = 'localhost',
-  $port    = 9200
-) {
-
+define elasticsearch::template ($file = undef, $replace = false, $delete = false, $host = 'localhost', $port = 9200) {
   require elasticsearch
 
   Exec {
-    path => [ '/bin', '/usr/bin', '/usr/local/bin' ]
-  }
+    path => ['/bin', '/usr/bin', '/usr/local/bin'] }
 
   # Build up the url
   $es_url = "http://${host}:${port}/_template/${name}"
@@ -74,7 +66,7 @@ define elasticsearch::template(
 
   $file_notify = $delete ? {
     true  => undef,
-    false => Exec[ "insert_template ${name}" ]
+    false => Exec["insert_template ${name}"]
   }
 
   # place the template file
@@ -82,14 +74,13 @@ define elasticsearch::template(
     ensure  => $file_ensure,
     source  => $file,
     notify  => $file_notify,
-    require => Exec[ 'mkdir_templates' ],
+    require => Exec['mkdir_templates'],
   }
 
   if $replace == true or $delete == true {
-
     # Only notify the insert_template call when we do a replace.
     $exec_notify = $replace ? {
-      true  => Exec[ "insert_template ${name}" ],
+      true  => Exec["insert_template ${name}"],
       false => undef
     }
 
@@ -113,5 +104,12 @@ define elasticsearch::template(
       tries       => 3,
       try_sleep   => 10
     }
+  }
+
+  exec { 'mkdir_templates':
+    command => "mkdir -p ${elasticsearch::confdir}/templates_import",
+    cwd     => '/',
+    creates => "${elasticsearch::confdir}/templates_import",
+    path    => '/usr/bin:/bin',
   }
 }
