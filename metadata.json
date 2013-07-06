@@ -14,9 +14,10 @@
     "manifests/init.pp": "857ab1a1616ec753816fa8bcc95d324b",
     "manifests/params.pp": "c9f1b36ced553fc50389121a486bb596",
     "manifests/spec.pp": "17dd5a76668ea44ec643c897a26b652d",
+    "manifests/template.pp": "3f56763fa6c0246696e6257410ca207a",
     "spec/classes/foo_spec.rb": "bb425fa686f7ef34d3e7694c8ad5378b",
     "spec/spec_helper.rb": "7885bb14f7edb8f34e2ab0299b097841",
-    "templates/default.elasticsearch": "63cb33b55c927c01f1ae165c224a87cb",
+    "templates/default.elasticsearch": "198aee10ccd4677548ee7ab9f1ad5339",
     "templates/spec.erb": "95554a191230174b3ba5942f8d8d5b1e"
   },
   "dependencies": [
