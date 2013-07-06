@@ -87,8 +87,8 @@ define elasticsearch::template ($file = undef, $replace = false, $delete = false
     # Delete the existing template
     # First check if it exists of course
     exec { "delete_template ${name}":
-      command => "curl -s -XDELETE ${es_url}",
-      onlyif  => "test $(curl -s '${es_url}?pretty=true' | wc -l) -gt 1",
+      command => "curl --noproxy localhost  -s -XDELETE ${es_url}",
+      onlyif  => "test $(curl --noproxy localhost -s '${es_url}?pretty=true' | wc -l) -gt 1",
       notify  => $exec_notify
     }
 
@@ -98,8 +98,8 @@ define elasticsearch::template ($file = undef, $replace = false, $delete = false
   # Before inserting we check if a template exists with that same name
   if $delete == false {
     exec { "insert_template ${name}":
-      command     => "curl -s -XPUT ${es_url} -d @${elasticsearch::confdir}/templates_import/elasticsearch-template-${name}.json",
-      unless      => "test $(curl -s '${es_url}?pretty=true' | wc -l) -gt 1",
+      command     => "curl --noproxy localhost -s -XPUT ${es_url} -d @${elasticsearch::confdir}/templates_import/elasticsearch-template-${name}.json",
+      unless      => "test $(curl --noproxy localhost -s '${es_url}?pretty=true' | wc -l) -gt 1",
       refreshonly => true,
       tries       => 3,
       try_sleep   => 10
